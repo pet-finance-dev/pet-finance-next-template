@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname } from "next/navigation";
+import type React from "react";
+import Footer from "@/layout/footer";
 // import { Toaster } from '@/components/ui/sonner';
-import Header from '@/layout/header';
-import Footer from '@/layout/footer';
+import Header from "@/layout/header";
 
 interface IProvidersProps {
   children: React.ReactNode;
@@ -15,7 +15,7 @@ const Providers: React.FC<IProvidersProps> = ({ children }) => {
 
   return (
     <>
-      {pathname === '/login' ? (
+      {pathname === "/login" ? (
         <>{children}</>
       ) : (
         <>

@@ -1,9 +1,8 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { Suspense } from 'react';
-import '@/styles/global.css';
-import Providers from '@/context/providers';
+import { Suspense } from "react";
+import "@/styles/global.css";
+import Providers from "@/context/providers";
 
 export default function RootLayout({
   children,
@@ -19,8 +18,7 @@ export default function RootLayout({
             <div className="flex justify-center items-center h-screen">
               <div>Loading...</div>
             </div>
-          }
-        >
+          }>
           <Providers>{children}</Providers>
         </Suspense>
       </body>

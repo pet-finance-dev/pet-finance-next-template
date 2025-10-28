@@ -1,10 +1,10 @@
 import axios, {
-  AxiosError,
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-} from 'axios';
-import { post } from './api';
+  type AxiosError,
+  type AxiosInstance,
+  type AxiosRequestConfig,
+  type AxiosResponse,
+} from "axios";
+import { post } from "./api";
 
 const api: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_API_URL,
@@ -18,7 +18,7 @@ let failedQueue: Array<{
 }> = [];
 
 const processQueue = (error: AxiosError | null) => {
-  failedQueue.forEach((prom) => {
+  failedQueue.forEach(prom => {
     if (error) {
       prom.reject(error);
     } else {
@@ -30,7 +30,7 @@ const processQueue = (error: AxiosError | null) => {
 };
 
 api.interceptors.response.use(
-  (response) => response,
+  response => response,
   async (error: AxiosError) => {
     const originalRequest = error.config as AxiosRequestConfig & {
       _retry?: boolean;
@@ -38,14 +38,21 @@ api.interceptors.response.use(
 
     if (
       error.response?.status &&
-      [401, 403, 405].includes(error.response.status) &&
+      [
+        401,
+        403,
+        405,
+      ].includes(error.response.status) &&
       !originalRequest._retry &&
-      !originalRequest.url?.includes('auth/refresh') &&
-      !originalRequest.url?.includes('auth/logout')
+      !originalRequest.url?.includes("auth/refresh") &&
+      !originalRequest.url?.includes("auth/logout")
     ) {
       if (isRefreshing) {
         return new Promise((resolve, reject) => {
-          failedQueue.push({ resolve, reject });
+          failedQueue.push({
+            resolve,
+            reject,
+          });
         }).then(() => api(originalRequest));
       }
 
@@ -53,14 +60,14 @@ api.interceptors.response.use(
       isRefreshing = true;
 
       try {
-        await api.post('auth/refresh/');
+        await api.post("auth/refresh/");
         processQueue(null);
         return api(originalRequest);
       } catch (err) {
         processQueue(err as AxiosError);
-        if (!originalRequest.url?.includes('auth/login')) {
-          post('auth/logout');
-          const redirectUrl = window.location.origin + '/login';
+        if (!originalRequest.url?.includes("auth/login")) {
+          post("auth/logout");
+          const redirectUrl = window.location.origin + "/login";
           window.location.href = redirectUrl;
         }
         return Promise.reject(err);
@@ -70,7 +77,7 @@ api.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  }
+  },
 );
 
 export default api;

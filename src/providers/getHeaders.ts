@@ -1,8 +1,8 @@
-import { IHttpRequestParams } from './api';
+import type { IHttpRequestParams } from "./api";
 
 const getHeaders = (props: IHttpRequestParams) => {
   const headers = {
-    'Content-type': 'application/json',
+    "Content-type": "application/json",
     ...props.extraHeaders,
   };
 
