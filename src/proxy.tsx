@@ -1,10 +1,15 @@
-import { MiddlewareConfig, NextRequest, NextResponse } from 'next/server';
+import {
+  type MiddlewareConfig,
+  // type NextRequest,
+  NextResponse,
+} from "next/server";
 
 // const privateRoutes = [
 //   { path: '/couple', whenAuthenticated: 'next' },
 // ];
 
-const middleware = async (request: NextRequest) => {
+// const proxy = async (request: NextRequest) => {
+const proxy = async () => {
   // const path = request.nextUrl.pathname;
   // const privateRoute = privateRoutes.find((route) => route.path === path);
   // const authToken = request.cookies.get('sb-access-token');
@@ -27,7 +32,9 @@ const middleware = async (request: NextRequest) => {
 };
 
 export const config: MiddlewareConfig = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|logo).*)'],
+  matcher: [
+    "/((?!api|_next/static|_next/image|favicon.ico|logo).*)",
+  ],
 };
 
-export { middleware };
+export { proxy };
