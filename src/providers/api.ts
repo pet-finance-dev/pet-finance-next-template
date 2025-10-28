@@ -22,7 +22,7 @@ const httpRequest = async (
   uri: string,
   method: HttpMethod,
   props: IPostRequestParams = {},
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 ): Promise<any> => {
   const headers = getHeaders(props);
   const endpoint = `${process.env.NEXT_PUBLIC_BASE_API_URL}/${uri}/`;

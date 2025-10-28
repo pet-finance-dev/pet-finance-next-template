@@ -2,8 +2,8 @@
 
 import { usePathname } from "next/navigation";
 import type React from "react";
+import { Toaster } from "@/components/ui/sonner";
 import Footer from "@/layout/footer";
-// import { Toaster } from '@/components/ui/sonner';
 import Header from "@/layout/header";
 
 interface IProvidersProps {
@@ -16,7 +16,9 @@ const Providers: React.FC<IProvidersProps> = ({ children }) => {
   return (
     <>
       {pathname === "/login" ? (
-        <>{children}</>
+        {
+          children,
+        }
       ) : (
         <>
           <Header />
@@ -24,7 +26,7 @@ const Providers: React.FC<IProvidersProps> = ({ children }) => {
           <Footer />
         </>
       )}
-      {/* <Toaster /> */}
+      <Toaster />
     </>
   );
 };
