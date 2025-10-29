@@ -72,6 +72,37 @@ Note: this template uses the `/src` folder with Next.js app-router conventions.
 
 ## Key concepts and examples
 
+### Biome: update on save:
+
+To configure Biome to lint and format the code on save, follow these steps:
+
+1. Open your users setting;
+
+2. Apply this:
+
+```json
+{
+  "editor.defaultFormatter": "biomejs.biome",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.biome": "explicit",
+    "source.organizeImports.biome": "explicit"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  }
+}
+```
+
 ### Providers
 
 The root layout (`src/app/layout.tsx`) renders a `Providers` component which is responsible for application-level providers such as Theme provider, Toast provider, and any Auth or API context you want to inject.
@@ -146,36 +177,4 @@ Try it locally
 ```bash
 npm install
 npm run dev
-```
-
-
-## Biome: update on save:
-
-To configure Biome to lint and format the code on save, follow these steps:
-
-1. Open your users setting;
-
-2. Apply this:
-
-```json
-{
-  "editor.defaultFormatter": "biomejs.biome",
-  "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.biome": "explicit",
-    "source.organizeImports.biome": "explicit"
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[javascriptreact]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  }
-}
 ```
