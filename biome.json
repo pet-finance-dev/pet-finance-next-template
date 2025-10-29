@@ -28,8 +28,6 @@
     "enabled": true,
     "rules": {
       "recommended": true,
-      "complexity": "info",
-      "security": "warn",
       "style": {
         "noDefaultExport": "off"
       },

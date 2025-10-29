@@ -67,7 +67,7 @@ api.interceptors.response.use(
         processQueue(err as AxiosError);
         if (!originalRequest.url?.includes("auth/login")) {
           post("auth/logout");
-          const redirectUrl = window.location.origin + "/login";
+          const redirectUrl = `${window.location.origin}/login`;
           window.location.href = redirectUrl;
         }
         return Promise.reject(err);
